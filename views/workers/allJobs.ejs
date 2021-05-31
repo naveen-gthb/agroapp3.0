@@ -1,0 +1,47 @@
+<% layout('layouts/boilerplate')%>
+
+<a href="/worker" class = "btn btn-success mr-3 mb-3 ">&#x2B9C; Back</a>
+
+<h1>Jobs near you</h1>
+
+
+<div class="row  ">
+    <% for (let job of jobs){%>
+    <div class = "col-md-3 col-sm-6">
+        <div class="card border-success shadow mb-3" >
+           
+            <div class="card-body">
+                <h5 class="card-title"><%= job.name %> </h5>
+                
+                <p class="card-text"><%= job.description.substr(0,100) %></p>
+                
+                <% let skills = job.skills.split(","); %>
+
+                <%for (let skill of skills) { %>
+                    <p class = "btn btn-warning"><b><%= skill %></b></p>
+
+                <% } %> 
+                <p class="btn btn-info"><%= job.gender %></p>
+               
+                <div class = "d-flex flex-row">
+                    <h4 class="card-text mr-5 text-success"><span>&#8377;</span><%= job.wage %>/day</h4>
+                    
+                    <h4 class="card-text mr-3"><%= job.city %></h4>
+                    
+                    
+                    
+                </div>
+
+                <div class = "d-flex flex-row">
+                    <a href="/worker/jobs/<%=job._id%>" class="btn btn-primary mr-3">Find More</a>
+                    <h6 class="card-text mr-3 text-muted"><%= job.quantity %> remaining</h6>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <% }%>
+</div>

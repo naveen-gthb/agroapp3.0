@@ -1,0 +1,87 @@
+<% layout('layouts/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">Order Details</h1>
+    <div class="col-md-6 offset-md-3">
+
+        <div class="card mb-3 card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Equipment Name - </b><%= equipment.name%></li>
+                <li class="list-group-item"><b>Rate/Hour- </b><span>&#8377;</span><%= equipment.price%></li>
+                <p hidden id = "priceId"><%= equipment.price %></p>
+                <p hidden id = "quantityId"><%= equipment.quantity %></p>
+                <li class="list-group-item"><b >Quantity Available - </b><%= equipment.quantity%></li>
+                <li class="list-group-item text-muted"><b>Please Enter Quantity less than available</b></li>
+                
+            </ul>
+        </div>
+
+        <form action="/farmer/equipments/<%= equipment._id %>/order" method="POST" class="validated-form" novalidate>
+            
+            
+            <div class="mb-3">
+                <label class="form-label" for="quantity">Quantity </label>
+                <input class="form-control" type="number" id="quantity" name="order[quantity]" max = "<%= equipment.quantity %>"  required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label" for="time">Number of hours </label>
+                <input class="form-control" type="text" id="time" name="order[time]" oninput="calc();" max = "24" min = "1" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <h4 id = "total" class = "text-success">Total Cost - </h4>
+            <hr>
+
+
+
+            <h4>Please Provide the Farm Address</h4>
+
+            <div class="mb-3">
+                <label class="form-label" for="street">Street </label>
+                <input class="form-control" type="text" id="street" name="order[street]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="landmark">Landmark </label>
+                <input class="form-control" type="text" id="landmark" name="order[landmark]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="city">City </label>
+                <input class="form-control" type="text" id="city" name="order[city]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            
+            
+            <div class="mb-3">
+                <label class="form-label" for="contact">Contact </label>
+                <input class="form-control" type="number" id="contact" name="order[contact]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            
+
+            <div class="mb-3">
+                <button class="btn btn-success">Place Enquiry</button>
+            </div>
+        </form>
+
+    </div>
+</div>

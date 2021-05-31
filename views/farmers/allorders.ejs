@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate')%>
+
+<a href="/farmer" class = "btn btn-success mr-3 mb-3 ">&#x2B9C; Back</a>
+
+<h1>All Orders</h1>
+
+<% for (let order of orders){%>
+<div class="card" mb-3>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-fluid" alt="" src="<%=order.product.images[0].url%>">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+
+                <% if(order.product.type === "product") { %>
+                    <h5 class = "text-info"><b>Agro Product</b></h5>
+                    <h4 class="card-title"><%= order.product.name %> </h4>
+                    <p class="card-text"><b>Ordered Quantity - </b><%= order.quantity %></p>
+                    <p class="card-text"><b>Seller - </b><%= order.supplier.username %></p>
+                    <p class="card-text"><b>Status - </b><%= order.status %></p>
+
+                    <a class="btn btn-primary" href="/farmer/orders/<%=order._id%>">Show Order</a>
+                <% } else {%>
+                    <h5 class = "text-success"><b>Farm Equipment</b></h5>
+                    <h5 class="card-title"><%= order.product.name %> </h5>
+                    <p class="card-text"><b>Ordered Quantity - </b><%= order.quantity %></p>
+                    <p class="card-text"><b>Time (Approx) - </b><%= order.time %> hours</p>
+                    <p class="card-text"><b>Equipment Provider - </b><%= order.supplier.username %></p>
+                    <p class="card-text"><b>Status - </b><%= order.status %></p>
+
+                    <a class="btn btn-primary" href="/farmer/orders/<%=order._id%>">Show Enquiry</a>
+                 <% } %>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<% }%>

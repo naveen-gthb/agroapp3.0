@@ -1,0 +1,32 @@
+<% layout('layouts/boilerplate')%>
+
+<a href="/supplier" class = "btn btn-success mr-3 mb-3 ">&#x2B9C; Back</a>
+
+<h1>Your Farm Equipments</h1>
+<div class = "mb-3">
+    <a href="/supplier/equipments/new" class = "btn btn-success mr-3">Add Farm Equipment</a>
+    <a href="/supplier/orders" class = "btn btn-primary mr-3">Show Orders</a>
+</div>
+
+<div class="row  ">
+    <% for (let equipment of equipments){%>
+    <div class = "col-md-3 col-sm-6">
+        <div class="card style="width: 18rem;"">
+            <img class="card-img-top" src="<%=equipment.images[0].url%>" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><%= equipment.name %> </h5>
+                <p class="card-text"><%= equipment.description.substr(0,100) %></p>
+                <div>
+                    <h4 class="card-text mr-3"><span>&#8377;</span><%= equipment.price %>/hour</h4>
+                    <h5 class="card-text mr-3"><%= equipment.city %></h5>
+                    <p class="starability-result" data-rating="<%= (equipment.ratingSum === 0)?(1):Math.floor(equipment.ratingSum/equipment.reviewCount) %>">
+                        Rated: <%=  (equipment.ratingSum = 0)?(1):(equipment.ratingSum/equipment.reviewCount) %> stars
+                    </p>
+                </div>
+                <a href="/supplier/equipments/<%=equipment._id%>" class="btn btn-primary">Explore</a>
+            </div>
+        </div>
+    </div>
+    
+    <% }%>
+</div>

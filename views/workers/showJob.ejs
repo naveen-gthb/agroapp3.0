@@ -1,0 +1,60 @@
+<% layout('layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+
+<a href="/worker/jobs" class = "btn btn-success mr-3 mb-3 ">&#x2B9C; Back</a>
+
+<div class="row">
+    <div class="col-md-6">
+        
+        <div class="card mb-3 border-success shadow mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><%= job.name%></h5>
+                <p class="card-text"><%= job.description%></p>
+                <h3 class="card-text"><span>&#8377;</span><%= job.wage %>/day</h3>
+                <h3 class="card-text"><%= job.city %></h3>
+                
+                <% let skills = job.skills.split(","); %>
+
+                <%for (let skill of skills) { %>
+                    <p class = "btn btn-warning"><b><%= skill %></b></p>
+
+                <% } %> 
+               
+
+                
+            </div>
+            
+            
+            <!-- <div class="card-footer text-muted">
+
+                
+            </div> -->
+            
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-3 card-body border-success shadow mb-3">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Available positions - </b><%= job.quantity%></li>
+            <li class="list-group-item"><b>Daily wage - </b><span>&#8377;</span><%= job.wage%></li>
+            <li class="list-group-item"><b>Farm Owner - </b><%= job.farmer.username%></li>
+            
+            <li class="list-group-item"><b>Farm Owner Contact- </b><%= job.farmer.contact%></li>
+            <li class="list-group-item"><h4>Farm Location</h4></li>
+
+            <li class="list-group-item"><b>Landmark - </b><%= job.landmark%></li>
+            <li class="list-group-item"><b>City/Village - </b><%= job.city%></li>
+            
+            
+            <div class="mb-3">
+            <form action="/worker/jobs/<%= job._id %>" method="POST">
+                <button class="card-link btn btn-success">Apply Now</button>
+            </form>
+        </div>
+        </ul>
+        </div>
+        
+    </div>
+    
+</div>
