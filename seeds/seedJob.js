@@ -31,7 +31,7 @@ const seedDB = async () => {
             applicants : 0,
             landmark : "Kondhwa",
             city : "Pune",
-            skills : "Plant Grafting,Onion Cultivation,Sowing,Ploughing",
+            skills : "Plant Grafting,Onion Cultivation,Sowing,Ploughing,",
             gender : "Male"
 
             

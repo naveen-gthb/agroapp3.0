@@ -2,12 +2,19 @@
 
 <a href="/farmer" class = "btn btn-success mr-3 mb-3 ">&#x2B9C; Back</a>
 
+<div class="input-group  mb-3 border-success shadow mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text btn-primary" id="inputGroup-sizing-default">Search</span>
+    </div>
+    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id = "search" oninput="searchProduct();" placeholder="Search Farm Equipments, Machines and more..">
+  </div>
+
 <h1>Rent Farm Equipments in your Area</h1>
 
 
 <div class="row  ">
     <% for (let equipment of equipments){%>
-    <div class = "col-md-3 col-sm-6">
+    <div class = "col-md-3 col-sm-6 productCard">
         <div class="card style="width: 18rem;"">
             <img class="card-img-top" src="<%=equipment.images[0].url%>" alt="Card image cap">
             <div class="card-body">

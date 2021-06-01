@@ -13,7 +13,7 @@
                 <h3 class="card-text"><span>&#8377;</span><%= job.wage %>/day</h3>
                 <h3 class="card-text"><%= job.city %></h3>
                 
-                <% let skills = job.skills.split(","); %>
+                <% let skills = job.skills.split(",").slice(0,-1); %>
 
                 <%for (let skill of skills) { %>
                     <p class = "btn btn-warning"><b><%= skill %></b></p>
@@ -21,9 +21,11 @@
                 <% } %> 
 
 
-            <div class = "mb-3">
-                <a class=" btn btn-info" href="/farmer/jobs/<%=job._id%>/edit">Edit Job</a>
-                <a class=" btn btn-danger" href="/worker/jobs/<%=job._id%>/apply">Close Job</a>
+            <div class = "mb-3 d-flex flex-row">
+                <a class=" btn btn-info mr-3" href="/farmer/jobs/<%=job._id%>/edit">Edit Job</a>
+                <form action="/farmer/jobs/<%=job._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn btn-danger">Close Job</button>
+                </form>
             </div>
 
             </div>
@@ -53,7 +55,7 @@
         
         <div class = "mb-3">
 
-            <h3>Worker Applications</h3>
+            <h3>Applicants</h3>
 
             <div class = "anyClass">
 
@@ -67,8 +69,9 @@
                         <h5 class="card-title"><%= application.worker.username%></h5>
                         <h5 class="card-text"><%= application.worker.age%></h5>
                         <h5 class="card-text"><%= application.worker.gender %></h5>
+                        <h5 class="card-text text-success"><%= application.status %></h5>
 
-                        <% let skillsWorker = application.worker.skills.split(","); %>
+                        <% let skillsWorker = application.worker.skills.split(",").slice(0,-1); %>
 
                         <%for (let skill of skillsWorker) { %>
                         
@@ -76,8 +79,8 @@
 
                         <% } %> 
                         <div class = "mb-3">
-                            <a class=" btn btn-primary" href="/farmer/jobs/hire/<%=application._id%>">Hire</a>
-                            <a class=" btn btn-danger" href="/farmer/jobs/decline/<%=application._id%>">Decline</a>
+                            <a class=" btn btn-primary" href="/farmer/jobs/<%=application._id%>/hire">Hire</a>
+                            <a class=" btn btn-danger" href="/farmer/jobs/<%=application._id%>/decline">Decline</a>
 
                         </div>
                         

@@ -40,7 +40,7 @@ module.exports.createProduct = async (req, res, next) => {
     product.supplier = req.user._id;
     product.ratingSum = 0;
     product.reviewCount = 0;
-    produt.type = "product";
+    product.type = "product";
     await product.save();
     //console.log(product);
     req.flash('success', 'Product Added Successfully!');

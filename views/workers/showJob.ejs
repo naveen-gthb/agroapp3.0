@@ -13,7 +13,7 @@
                 <h3 class="card-text"><span>&#8377;</span><%= job.wage %>/day</h3>
                 <h3 class="card-text"><%= job.city %></h3>
                 
-                <% let skills = job.skills.split(","); %>
+                <% let skills = job.skills.split(",").slice(0,-1); %>
 
                 <%for (let skill of skills) { %>
                     <p class = "btn btn-warning"><b><%= skill %></b></p>
@@ -48,10 +48,21 @@
             
             
             <div class="mb-3">
-            <form action="/worker/jobs/<%= job._id %>" method="POST">
-                <button class="card-link btn btn-success">Apply Now</button>
-            </form>
-        </div>
+                
+                <% if(status === "applied") {%>
+                    <li class="list-group-item text-success"><b>You have already applied for the job</b></li>
+                <% } else if(status === "not applied"){%>
+                <form action="/worker/jobs/<%= job._id %>" method="POST">
+                     <button class="card-link btn btn-success">Apply Now</button>
+                </form>
+                <% } else if(status === "accepted"){%>
+                    <li class="list-group-item text-success"><b>Your application is accepted.Contact Farm Owner for further details</b></li>
+                 <% } else if(status === "declined"){%>
+                    <li class="list-group-item text-danger"><b>Your application has been declined</b></li>
+                <% } %>
+            </div>
+
+        
         </ul>
         </div>
         

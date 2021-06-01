@@ -1,13 +1,15 @@
 <% layout('layouts/boilerplate')%>
 <div class="row">
     <h1 class="text-center">Order Details</h1>
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6 offset-md-3">  
 
         <div class="card mb-3 card-body">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><b>Equipment Name - </b><%= equipment.name%></li>
                 <li class="list-group-item"><b>Rate/Hour- </b><span>&#8377;</span><%= equipment.price%></li>
-                <p hidden id = "priceId"><%= equipment.price %></p>
+                <!--Below price printed but hidden just for calculateEquipmentTotal function to get the price from here -->
+                <p hidden id = "priceId"><%= equipment.price %></p> 
+                <!--Below quantity printed but hidden just for calculateEquipmentTotal function to get the quantity from here -->
                 <p hidden id = "quantityId"><%= equipment.quantity %></p>
                 <li class="list-group-item"><b >Quantity Available - </b><%= equipment.quantity%></li>
                 <li class="list-group-item text-muted"><b>Please Enter Quantity less than available</b></li>
@@ -28,13 +30,14 @@
 
 
             <div class="mb-3">
-                <label class="form-label" for="time">Number of hours </label>
-                <input class="form-control" type="text" id="time" name="order[time]" oninput="calc();" max = "24" min = "1" required>
+                <label class="form-label" for="time">Number of hours </label><!-- calculateEquipmentTotal Function in public/javascript/functions  -->
+                <input class="form-control" type="text" id="time" name="order[time]" oninput="calculateEquipmentTotal();" max = "24" min = "1" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
 
+            <!--Below total will be updated by the calculateEquipmentTotal Function  -->
             <h4 id = "total" class = "text-success">Total Cost - </h4>
             <hr>
 

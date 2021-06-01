@@ -65,18 +65,45 @@ router.route('/equipments')
 
 
 
+
+
+router.route('/jobs/new')
+    .get(isLoggedIn,gaveInfo,jobs.renderNewJobPage)
+
+    
+router.get('/jobs/:id/edit', isLoggedIn, /*isAuthor,*/ catchAsync(jobs.renderEditJobForm))
+
+
+router.route('/jobs/:id/hire')
+    .get(isLoggedIn,gaveInfo,jobs.hireWorker)
+
+
+router.route('/jobs/:id/decline')
+    .get(isLoggedIn,gaveInfo,jobs.declineWorker)
+    
+
+
+
+
+
 router.route('/jobs/:id')
     .get(isLoggedIn,gaveInfo,jobs.showJob)
+    .put(isLoggedIn,gaveInfo /*isAuthor,*/ , catchAsync(jobs.updateJob))
+    .delete(isLoggedIn,gaveInfo /*isAuthor,*/,catchAsync(jobs.deleteJob));
+
 
 
 
 router.route('/jobs')
     .get(isLoggedIn,gaveInfo,jobs.index)
+    .post(isLoggedIn,gaveInfo,jobs.createJob)
 
 router.route('/')
     .get(isLoggedIn, gaveInfo, products.renderFarmerPage)
     //.post(catchAsync(suppliers.register));
 
+
+    
 
 
 

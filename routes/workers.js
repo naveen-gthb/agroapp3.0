@@ -15,12 +15,36 @@ router.route('/addinfo')
     .post(isLoggedIn,workers.addInfo)
 
 
+
+router.route('/jobs/:id/cancel')
+    .get(isLoggedIn, gaveInfoWorker, workers.cancelApplication)
+
+
+
 router.route('/jobs/:id')
     .get(isLoggedIn, gaveInfoWorker, workers.showJob)
     .post(isLoggedIn, gaveInfoWorker, workers.applyJob)
+    
 
 router.route('/jobs')
     .get(isLoggedIn, gaveInfoWorker, workers.index)
+
+
+router.route('/applications')
+    .get(isLoggedIn, gaveInfoWorker, workers.showApplications)
+
+
+
+
+router.route('/profile/edit')
+    .get(isLoggedIn, gaveInfoWorker, workers.renderEditProfilePage)
+    
+
+
+router.route('/profile/:id')
+    // .get(isLoggedIn, gaveInfoWorker, workers.showProfile)
+    .put(isLoggedIn,catchAsync(workers.updateProfile))
+
 
 router.route('/')
     .get(isLoggedIn, gaveInfoWorker, workers.renderWorkerPage)

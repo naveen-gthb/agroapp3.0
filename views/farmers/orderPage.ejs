@@ -11,6 +11,10 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><b>Product Name - </b><%= product.name%></li>
                 <li class="list-group-item"><b>Product Price - </b><span>&#8377;</span><%= product.price%></li>
+                <!--Below quantity printed but hidden just for calculateProductTotal function to get the quantity from here -->
+                <p hidden id = "quantityId"><%= product.quantity %></p>
+                <!--Below price printed but hidden just for calculateProductTotal function to get the price from here -->
+                <p hidden id = "priceId"><%= product.price %></p>
                 <li class="list-group-item"><b>Quantity Available - </b><%= product.quantity%></li>
                 <li class="list-group-item text-muted"><b>Please Enter Quantity less than available</b></li>
                 
@@ -21,12 +25,18 @@
             
             
             <div class="mb-3">
-                <label class="form-label" for="quantity">Quantity </label>
-                <input class="form-control" type="number" id="quantity" name="order[quantity]" max = "<%= product.quantity %>" required>
+                <label class="form-label" for="quantity">Quantity </label><!-- calculateProductTotal Function in public/javascript/functions  -->
+                <input class="form-control" type="number" id="quantity" name="order[quantity]" oninput="calculateProductTotal();" max = "<%= product.quantity %>" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
+
+            <!--Below total will be updated by the calculateProductTotal Function  -->
+            <h4 id = "total" class = "text-success">Total Cost - </h4>
+            <hr>
+
+            <h4>Please Provide the Delivery Address</h4>
 
             <div class="mb-3">
                 <label class="form-label" for="street">Street </label>
@@ -35,6 +45,8 @@
                     Looks good!
                 </div>
             </div>
+
+
 
             <div class="mb-3">
                 <label class="form-label" for="landmark">Landmark </label>

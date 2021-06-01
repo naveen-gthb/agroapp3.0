@@ -1,8 +1,11 @@
 <% layout('layouts/boilerplate')%>
 
 <a href="/farmer" class = "btn btn-success mr-3 mb-3 ">&#x2B9C; Back</a>
+<a href="/farmer/jobs/new" class="btn btn-primary mr-3 mb-3">Create Job</a>
 
 <h1>Your Jobs</h1>
+
+
 
 
 <div class="row  ">
@@ -15,10 +18,10 @@
                 
                 <p class="card-text"><%= job.description.substr(0,100) %></p>
                 
-                <% let skills = job.skills.split(","); %>
+                <% let skills = job.skills.split(",").slice(0,-1); %>
 
                 <%for (let skill of skills) { %>
-                    <p class = "btn btn-warning"><%= skill %></p>
+                    <p class = "btn btn-warning"><b><%= skill %></b></p>
 
                 <% } %> 
                 <p class="btn btn-info"><%= job.gender %></p>
